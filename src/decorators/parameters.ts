@@ -33,7 +33,7 @@ export const Format = {
 
 export function paramBuilder( paramName: string ) {
   return function ( name: string, value?: any | { value?: any, format?: string } ) {
-    return function ( target: RestClient, propertyKey: string | symbol, parameterIndex: number ) {
+    return function ( target: RestClient, propertyKey: string, parameterIndex: number ) {
       let format;
       if ( value ) {
         if ( typeof(value) === 'object' ) {
@@ -49,8 +49,8 @@ export function paramBuilder( paramName: string ) {
           }
         }
       }
-      var metadataKey   = `${propertyKey}_${paramName}_parameters`;
-      var paramObj: any = {
+      const metadataKey = `${propertyKey}_${paramName}_parameters`;
+      const paramObj: any = {
         key: name,
         parameterIndex: parameterIndex,
         value: value,

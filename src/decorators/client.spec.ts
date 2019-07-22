@@ -5,6 +5,7 @@ import { HttpClient, HttpHandler, HttpRequest, HttpResponse } from '@angular/com
 import { RestClient } from '../rest-client';
 import { Get } from './request-methods';
 import { Client } from './client';
+import 'rxjs-compat/add/observable/of';
 
 describe('@Client', () => {
 

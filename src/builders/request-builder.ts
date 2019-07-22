@@ -3,7 +3,6 @@ import {
   HttpHeaders as AngularHeaders,
   HttpParams,
   HttpRequest,
-  HttpResponse
 } from '@angular/common/http';
 
 import { RestClient } from '../rest-client';

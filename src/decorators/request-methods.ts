@@ -1,18 +1,17 @@
 import { methodBuilder } from '../builders/request-builder';
-import { RestClient } from "../rest-client";
 
 export enum RequestMethod {
 
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-  PATCH = "PATCH",
-  HEAD = "HEAD",
-  OPTIONS = "OPTIONS",
-  JSONP = "JSONP"
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  PATCH = 'PATCH',
+  HEAD = 'HEAD',
+  OPTIONS = 'OPTIONS',
+  JSONP = 'JSONP'
 
-};
+}
 
 /**
  * Get method

@@ -1,16 +1,15 @@
 import { assert } from 'chai';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { RestClient } from '../rest-client';
 import { Get, Post, RequestMethod } from './request-methods';
-import { Client } from './client';
 
 describe( '@Get', () => {
 
   it( 'verify request method is set', () => {
     // Arrange
-    var method;
-    var url;
+    let method;
+    let url;
     let requestMock = new HttpMock( ( req: HttpRequest<any> ) => {
       method = req.method;
       url    = req.url;
@@ -30,8 +29,8 @@ describe( '@Post', () => {
 
   it( 'verify request method is set', () => {
     // Arrange
-    var method;
-    var url;
+    let method;
+    let url;
     let requestMock = new HttpMock( ( req: HttpRequest<any> ) => {
       method = req.method;
       url    = req.url;

@@ -1,9 +1,8 @@
 import { assert } from 'chai';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { RestClient } from '../rest-client';
 import { Get } from './request-methods';
-import { Map } from './map';
 import { Produces, MediaType } from './produces';
 
 describe( '@Produces', () => {
