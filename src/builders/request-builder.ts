@@ -4,11 +4,11 @@ import {
   HttpParams,
   HttpRequest,
 } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+import { map, timeout } from 'rxjs/operators';
 
 import { RestClient } from '../rest-client';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/timeout';
 import { Format } from '../decorators/parameters';
 
 export function methodBuilder( method: string ) {
@@ -122,9 +122,9 @@ export function methodBuilder( method: string ) {
         for ( let k in descriptor.headers ) {
           if ( descriptor.headers.hasOwnProperty( k ) ) {
             if ( headers.has( k ) ) {
-              headers = headers.append( k, descriptor.headers[ k ] + "" );
+              headers = headers.append( k, descriptor.headers[ k ] + '' );
             } else {
-              headers = headers.set( k, descriptor.headers[ k ] + "" );
+              headers = headers.set( k, descriptor.headers[ k ] + '' );
             }
           }
         }
@@ -151,16 +151,16 @@ export function methodBuilder( method: string ) {
                     value = value.join( '|' );
                     break;
                   case Format.MULTI:
-                    value = value;
+                    // value = value; ok?
                     break;
                   default:
                     value = value.join( ',' );
                 }
               }
               if ( Array.isArray( value ) ) {
-                value.forEach( v => headers = headers.append( pHeader[ k ].key, v + "" ) );
+                value.forEach( v => headers = headers.append( pHeader[ k ].key, v + '' ) );
               } else {
-                headers = headers.append( pHeader[ k ].key, value + "");
+                headers = headers.append( pHeader[ k ].key, value + '');
               }
             }
           }
@@ -180,16 +180,22 @@ export function methodBuilder( method: string ) {
 
         // transform the observable in accordance to the @Produces decorator
         if ( descriptor.mime ) {
-          observable = observable.map( descriptor.mime );
+          observable = observable.pipe(
+            map( descriptor.mime )
+          );
         }
         if ( descriptor.timeout ) {
-          descriptor.timeout.forEach( ( timeout: number ) => {
-            observable = observable.timeout( timeout );
+          descriptor.timeout.forEach( ( time: number ) => {
+            observable = observable.pipe(
+              timeout( time )
+            );
           } );
         }
         if ( descriptor.mappers ) {
           descriptor.mappers.forEach( ( mapper: ( resp: any ) => any ) => {
-            observable = observable.map( mapper );
+            observable = observable.pipe(
+              map( mapper )
+            );
           } );
         }
         if ( descriptor.emitters ) {
