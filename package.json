@@ -2,7 +2,7 @@
   "name": "angular-rest-client",
   "version": "2.0.1",
   "description": "Angular 5 HTTP client with Typescript Declarative Annotations, Observables, Interceptors and Timeouts.",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "setup": "yarn --freeze-lockfile",
     "test": "node_modules/.bin/gulp test",
